@@ -1,5 +1,5 @@
 {
-  "name": "BMICalculator",
+  "name": "bmicalculator",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -25,5 +25,17 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfey504/BMICalculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alfey504/BMICalculator/issues"
+  },
+  "homepage": "https://github.com/alfey504/BMICalculator#readme",
+  "description": ""
 }

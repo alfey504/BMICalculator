@@ -11,10 +11,23 @@ import {
   Switch,
 } from 'react-native';
 
+const Slab = (props) => {
+  if (props.bmi == null){
+    return (<Text></Text>);
+  }else if(props.bmi <= 18.5){
+    return(<Text style={styles.regularText}>Your are Underweight</Text>);
+  }else if(props.bmi > 18.5 && props.bmi <=24.9){
+    return(<Text style={styles.regularText}>Your are normal weight</Text>);
+  }else if(props.bmi >= 25 && props.bmi<= 29.9){
+    return(<Text style={styles.regularText}>You are Overwieght</Text>);
+  }else{
+    return(<Text style={styles.regularText}>Your are Obese</Text>);
+  }
+}
 
 const App = () => {
 
-  const [bmi, setBmi] = useState(0);
+  const [bmi, setBmi] = useState(null);
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [imperial, setImperial] = useState(false);
@@ -31,8 +44,8 @@ const App = () => {
       new_height = new_height/3.2808
     }
 
-    var val = new_weight/(new_height*new_height)
-    setBmi(Math.round(val))
+    let val = new_weight/(new_height*new_height)
+    setBmi(val.toFixed(2))
   }
 
   return (
@@ -72,9 +85,10 @@ const App = () => {
         >
           <Text style={styles.buttonText}>Calculate BMI</Text>
         </TouchableOpacity>
+      
+        {bmi == null? <Text style={styles.regularText}></Text> : <Text style={styles.regularText}>Your BMI is: {bmi}</Text>}
         
-
-        {bmi == 0? <Text style={styles.regularText}></Text> : <Text style={styles.regularText}>Your BMI is: {bmi}</Text>}
+        <Slab bmi={bmi}/>
       </View>
     </ScrollView>
   );
@@ -93,11 +107,11 @@ const styles = StyleSheet.create({
   },
   regularText: {
     textAlign: 'center',
-    textSize: 20,
+    fontSize: 18,
     marginLeft:40,
     marginRight:40,
     marginTop:20,
-    marginBottom: 40
+    marginBottom: 10,
   },
 
   button: {
